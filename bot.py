@@ -46,8 +46,8 @@ async def on_message(message):
         parts = message.content.split()
         ticker = parts[1].upper() if len(parts) > 1 else "^GSPC"
 
-        response = f"**Keltner Channel Levels for ${ticker}:**
-"
+        response = f"**Keltner Channel Levels for {ticker}:**\n"
+
 
         valid_data_found = False
         for label, interval in timeframes.items():
@@ -55,24 +55,15 @@ async def on_message(message):
             if values:
                 valid_data_found = True
                 top, mid, bot = values
-                response += f"
-**Time frame: {label}**
-"
-                response += f"Top Kelt: {round(top, 2)}
-"
-                response += f"Middle Kelt: {round(mid, 2)}
-"
-                response += f"Bottom Kelt: {round(bot, 2)}
-"
+                response += f"**Time frame: {label}**\n"
+                response += f"Top Kelt: {round(top, 2)}\n"
+                response += f"Middle Kelt: {round(mid, 2)}\n"
+                response += f"Bottom Kelt: {round(bot, 2)}\n"
             else:
-                response += f"
-**Time frame: {label}**
-Could not fetch data.
-"
+                response += f"**Time frame: {label}**\nCould not fetch data.\n"
 
         if not valid_data_found:
-            response += "
-⚠️ Ticker not recognized. Try symbols like `SPY`, `AAPL`, or `^GSPC`."
+            response += "⚠️ Ticker not recognized. Try symbols like `SPY`, `AAPL`, or `^GSPC`."
 
         await message.channel.send(response)
 
