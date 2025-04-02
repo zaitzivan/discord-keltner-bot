@@ -56,9 +56,9 @@ async def on_message(message):
                 valid_data_found = True
                 top, mid, bot = values
                 response += f"**Time frame: {label}**\n"
-                response += f"Top Kelt: {round(top, 2)}\n"
-                response += f"Middle Kelt: {round(mid, 2)}\n"
-                response += f"Bottom Kelt: {round(bot, 2)}\n"
+                response += f"Top Kelt: {round(top.item(), 2)}\n"
+                response += f"Middle Kelt: {round(mid.item(), 2)}\n"
+                response += f"Bottom Kelt: {round(bot.item(), 2)}\n"
             else:
                 response += f"**Time frame: {label}**\nCould not fetch data.\n"
 
